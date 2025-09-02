@@ -136,6 +136,13 @@ h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para el póster */
 }
 
+.movie-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que el contenedor crezca y ocupe el espacio */
+    width: 100%;
+}
+
 .movie-details h3 {
     margin-top: 10px; /* Ajuste de margen */
     margin-bottom: 5px;
@@ -150,6 +157,15 @@ h2 {
     color: var(--secondary-text-color);
     line-height: 1.4;
     font-weight: 400;
+}
+
+.movie-rating {
+    margin-top: auto; /* Empuja la calificación hacia abajo */
+    padding-top: 10px; /* Espacio sobre la calificación */
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-text-color);
+    text-align: left; /* Alineado a la izquierda */
 }
 
 /* Animaciones */
@@ -203,5 +219,8 @@ h2 {
     }
     .movie-details h3 {
         margin-top: 0;
+    }
+    .movie-rating {
+        text-align: left;
     }
 }
