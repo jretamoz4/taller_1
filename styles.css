@@ -76,33 +76,34 @@ h2 {
     color: var(--primary-text-color);
 }
 
+/* Estilos de Hobbies actualizados */
 .hobbies-section ul {
     list-style-type: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(5, 1fr); /* Cambio clave: 5 columnas en 1 fila */
     gap: 20px;
 }
 
 .hobbies-section li {
     background-color: var(--background-color);
-    margin-bottom: 0;
     padding: 15px;
     border-radius: 10px;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 10px;
     border: 1px solid var(--border-color);
-    height: auto;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    max-height: 230px;
 }
 
 .hobbies-section li:hover {
     background-color: var(--border-color);
     transform: translateY(-3px);
+    max-height: 300px;
 }
 
 .hobby-image {
@@ -121,7 +122,21 @@ h2 {
     margin-top: 5px;
 }
 
-/* Estilos de la galería de películas actualizados */
+.hobby-description {
+    font-size: 0.85rem;
+    color: var(--secondary-text-color);
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.4s ease-out 0.1s, max-height 0.4s ease-out;
+    margin: 5px 0 0 0;
+}
+
+.hobbies-section li:hover .hobby-description {
+    opacity: 1;
+    max-height: 100px;
+}
+
+/* Estilos de la galería de películas */
 .movies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -129,23 +144,23 @@ h2 {
 }
 
 .movie-item {
-    background-color: #FEFEFE; /* Ligeramente diferente para destacar */
+    background-color: #FEFEFE;
     border-radius: 12px;
     padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     border: 1px solid var(--border-color);
-    transition: all 0.4s ease-in-out; /* Transición general para todos los cambios */
-    overflow: hidden; /* Oculta el contenido que se desborda */
-    max-height: 480px; /* Altura inicial de la tarjeta */
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    max-height: 480px;
 }
 
 .movie-item:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 8px 30px var(--hover-shadow-color);
     border-color: rgba(0, 122, 255, 0.4);
-    max-height: 600px; /* Altura expandida al pasar el cursor */
+    max-height: 600px;
 }
 
 .movie-poster {
@@ -154,7 +169,7 @@ h2 {
     height: 236px;
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    align-self: center; /* Centrar el póster */
+    align-self: center;
 }
 
 .movie-details {
@@ -191,11 +206,10 @@ h2 {
     text-align: left;
 }
 
-/* Estilos para los detalles extra */
 .movie-extra-details {
-    opacity: 0; /* Oculto por defecto */
-    max-height: 0; /* Oculto por defecto */
-    transition: opacity 0.4s ease-out 0.1s, max-height 0.4s ease-out; /* Transición suave */
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.4s ease-out 0.1s, max-height 0.4s ease-out;
     text-align: left;
     border-top: 1px solid var(--border-color);
     padding-top: 15px;
@@ -203,8 +217,8 @@ h2 {
 }
 
 .movie-item:hover .movie-extra-details {
-    opacity: 1; /* Visible al pasar el cursor */
-    max-height: 100px; /* Altura suficiente para mostrar el contenido */
+    opacity: 1;
+    max-height: 100px;
 }
 
 .movie-extra-details p {
@@ -248,6 +262,12 @@ h2 {
 }
 
 /* Media Queries */
+@media (max-width: 1000px) { /* Ajuste para que se vea bien en tablets */
+    .hobbies-section ul {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
     .main-header h1 {
         font-size: 2.5rem;
@@ -258,17 +278,18 @@ h2 {
     .container {
         padding: 15px;
     }
-    .hobbies-section ul {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    .hobbies-section li {
+        max-height: none;
+    }
+    .hobbies-section li .hobby-description,
+    .movie-item .movie-extra-details {
+        opacity: 1;
+        max-height: 100px;
     }
     .movies-grid {
         grid-template-columns: 1fr;
     }
     .movie-item {
-        max-height: none; /* Desactivar la expansión en móvil para evitar problemas de layout */
-    }
-    .movie-item .movie-extra-details {
-        opacity: 1; /* Mostrar detalles siempre en móvil */
-        max-height: 100px;
+        max-height: none;
     }
 }
