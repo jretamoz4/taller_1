@@ -80,24 +80,24 @@ h2 {
     list-style-type: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ajustado para tarjetas verticales */
-    gap: 20px; /* Mayor espacio entre tarjetas de hobby */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
 }
 
 .hobbies-section li {
     background-color: var(--background-color);
     margin-bottom: 0;
-    padding: 15px; /* Padding ajustado */
+    padding: 15px;
     border-radius: 10px;
     font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
-    flex-direction: column; /* Cambiado a columna para imagen arriba, texto abajo */
-    align-items: center; /* Centrar contenido */
-    text-align: center; /* Centrar texto */
-    gap: 10px; /* Espacio entre imagen y texto */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
     border: 1px solid var(--border-color);
-    height: auto; /* Asegurar que la altura se ajuste al contenido */
+    height: auto;
 }
 
 .hobbies-section li:hover {
@@ -105,24 +105,23 @@ h2 {
     transform: translateY(-3px);
 }
 
-.hobby-image { /* Renombrado de hobby-icon a hobby-image para mayor claridad */
-    width: 100%; /* La imagen ocupa todo el ancho disponible */
-    max-width: 150px; /* Ancho máximo para la imagen */
-    height: auto; /* Altura automática para mantener la proporción */
+.hobby-image {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
     border-radius: 8px;
     object-fit: cover;
-    margin-bottom: 5px; /* Pequeño margen entre la imagen y el texto */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .hobby-text {
-    font-size: 1.1rem; /* Tamaño de fuente para el texto del hobby */
+    font-size: 1.1rem;
     color: var(--primary-text-color);
     font-weight: 600;
+    margin-top: 5px;
 }
 
-
-/* Estilos para la galería de películas (grid 3x3) */
+/* Estilos de la galería de películas actualizados */
 .movies-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -130,22 +129,23 @@ h2 {
 }
 
 .movie-item {
-    background-color: var(--background-color);
+    background-color: #FEFEFE; /* Ligeramente diferente para destacar */
     border-radius: 12px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
     gap: 15px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
     border: 1px solid var(--border-color);
+    transition: all 0.4s ease-in-out; /* Transición general para todos los cambios */
+    overflow: hidden; /* Oculta el contenido que se desborda */
+    max-height: 480px; /* Altura inicial de la tarjeta */
 }
 
 .movie-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px var(--hover-shadow-color);
-    border-color: rgba(0, 122, 255, 0.3);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 30px var(--hover-shadow-color);
+    border-color: rgba(0, 122, 255, 0.4);
+    max-height: 600px; /* Altura expandida al pasar el cursor */
 }
 
 .movie-poster {
@@ -154,6 +154,7 @@ h2 {
     height: 236px;
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    align-self: center; /* Centrar el póster */
 }
 
 .movie-details {
@@ -161,10 +162,11 @@ h2 {
     flex-direction: column;
     flex-grow: 1;
     width: 100%;
+    text-align: center;
 }
 
 .movie-details h3 {
-    margin-top: 10px;
+    margin-top: 0;
     margin-bottom: 5px;
     color: var(--primary-text-color);
     font-size: 1.4rem;
@@ -177,6 +179,7 @@ h2 {
     color: var(--secondary-text-color);
     line-height: 1.4;
     font-weight: 400;
+    margin-bottom: 10px;
 }
 
 .movie-rating {
@@ -186,6 +189,31 @@ h2 {
     font-weight: 600;
     color: var(--primary-text-color);
     text-align: left;
+}
+
+/* Estilos para los detalles extra */
+.movie-extra-details {
+    opacity: 0; /* Oculto por defecto */
+    max-height: 0; /* Oculto por defecto */
+    transition: opacity 0.4s ease-out 0.1s, max-height 0.4s ease-out; /* Transición suave */
+    text-align: left;
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.movie-item:hover .movie-extra-details {
+    opacity: 1; /* Visible al pasar el cursor */
+    max-height: 100px; /* Altura suficiente para mostrar el contenido */
+}
+
+.movie-extra-details p {
+    font-size: 0.85rem;
+    margin: 5px 0;
+}
+
+.movie-extra-details strong {
+    color: var(--primary-text-color);
 }
 
 /* Animaciones */
@@ -219,7 +247,7 @@ h2 {
     animation-delay: 0.8s;
 }
 
-/* Media Queries para responsividad */
+/* Media Queries */
 @media (max-width: 768px) {
     .main-header h1 {
         font-size: 2.5rem;
@@ -231,19 +259,16 @@ h2 {
         padding: 15px;
     }
     .hobbies-section ul {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajuste para móviles */
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
     .movies-grid {
         grid-template-columns: 1fr;
     }
     .movie-item {
-        flex-direction: row;
-        text-align: left;
+        max-height: none; /* Desactivar la expansión en móvil para evitar problemas de layout */
     }
-    .movie-details h3 {
-        margin-top: 0;
-    }
-    .movie-rating {
-        text-align: left;
+    .movie-item .movie-extra-details {
+        opacity: 1; /* Mostrar detalles siempre en móvil */
+        max-height: 100px;
     }
 }
