@@ -1,120 +1,162 @@
 :root {
-    --primary-color: #ffffff;
-    --background-color: #121212;
-    --card-background: #1e1e1e;
-    --accent-color: #007BFF;
-    --shadow-color: rgba(0, 0, 0, 0.5);
+    --primary-text-color: #333333; /* Texto más oscuro para contraste */
+    --secondary-text-color: #666666; /* Texto secundario */
+    --background-color: #f5f5f7; /* Blanco grisáceo de Apple */
+    --card-background: #ffffff; /* Fondo blanco para las tarjetas */
+    --border-color: #e8e8ed; /* Borde sutil */
+    --accent-color: #007AFF; /* Azul vibrante de Apple */
+    --shadow-color: rgba(0, 0, 0, 0.08); /* Sombra suave */
+    --hover-shadow-color: rgba(0, 0, 0, 0.15); /* Sombra al pasar el ratón */
 }
 
 body {
     background-color: var(--background-color);
-    color: var(--primary-color);
-    font-family: 'Roboto Condensed', sans-serif;
+    color: var(--primary-text-color);
+    font-family: 'Inter', sans-serif; /* Fuente Inter */
     margin: 0;
-    padding: 20px;
+    padding: 30px; /* Mayor padding general */
     display: flex;
     flex-direction: column;
     align-items: center;
-    line-height: 1.6;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Suavizado de fuente */
+    -moz-osx-font-smoothing: grayscale; /* Suavizado de fuente */
 }
 
 .main-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 50px; /* Mayor margen inferior */
     animation: fadeInDown 1s ease-out;
 }
 
 .main-header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3rem; /* Tamaño de fuente más grande */
     font-weight: 700;
+    letter-spacing: -0.02em; /* Espaciado de letras sutil */
 }
 
 .main-header p {
-    font-size: 1.2rem;
-    color: #a0a0a0;
-    font-weight: 300;
+    font-size: 1.3rem; /* Tamaño de fuente para el subtítulo */
+    color: var(--secondary-text-color);
+    font-weight: 400;
+    margin-top: 10px;
 }
 
 .container {
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px; /* Ancho máximo adaptado para 3 columnas */
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px; /* Mayor espacio entre secciones */
 }
 
 .card {
     background-color: var(--card-background);
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 8px 20px var(--shadow-color);
+    border-radius: 15px; /* Bordes más redondeados */
+    padding: 30px; /* Mayor padding interno */
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border: 1px solid var(--border-color); /* Borde sutil */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards;
 }
 
+.card:hover {
+    box-shadow: 0 8px 25px var(--hover-shadow-color);
+    border-color: rgba(0, 122, 255, 0.3); /* Borde azul al pasar el ratón */
+}
+
+h2 {
+    font-size: 2rem; /* Tamaño para los títulos de sección */
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--primary-text-color);
+}
+
 .hobbies-section ul {
     list-style-type: none;
     padding: 0;
+    display: grid; /* Usamos grid para organizar hobbies */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
 }
 
 .hobbies-section li {
-    background-color: rgba(255, 255, 255, 0.05);
-    margin-bottom: 10px;
-    padding: 12px;
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+    background-color: var(--background-color); /* Fondo similar al del body */
+    margin-bottom: 0; /* Ya no es necesario */
+    padding: 15px 20px;
+    border-radius: 10px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-color);
 }
 
 .hobbies-section li:hover {
-    background-color: var(--accent-color);
+    background-color: var(--border-color); /* Ligero cambio de fondo al pasar el ratón */
+    transform: translateY(-3px);
 }
 
-/* Estilos para la galería de películas */
+/* Estilos para la galería de películas (grid 3x3) */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columnas */
     gap: 25px;
 }
 
 .movie-item {
-    background-color: #2a2a2a;
-    border-radius: 10px;
-    padding: 15px;
+    background-color: var(--background-color); /* Fondo claro para los items */
+    border-radius: 12px;
+    padding: 20px;
     display: flex;
+    flex-direction: column; /* Cambiado a columna para mejor presentación en 3x3 */
+    align-items: center; /* Centrar contenido */
+    text-align: center; /* Centrar texto */
     gap: 15px;
-    align-items: center;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    border: 1px solid var(--border-color);
 }
 
 .movie-item:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+    transform: translateY(-5px); /* Pequeño levantamiento al pasar el ratón */
+    box-shadow: 0 6px 20px var(--hover-shadow-color);
+    border-color: rgba(0, 122, 255, 0.3);
 }
 
 .movie-poster {
     border-radius: 8px;
     width: 166px;
     height: 236px;
-    flex-shrink: 0;
     object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para el póster */
 }
 
 .movie-details h3 {
-    margin-top: 0;
-    color: var(--accent-color);
-    font-size: 1.3rem;
+    margin-top: 10px; /* Ajuste de margen */
+    margin-bottom: 5px;
+    color: var(--primary-text-color);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
 }
 
 .movie-details p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+    line-height: 1.4;
+    font-weight: 400;
 }
 
 /* Animaciones */
 @keyframes fadeInDown {
     from {
         opacity: 0;
-        transform: translateY(-20px);
+        transform: translateY(-30px);
     }
     to {
         opacity: 1;
@@ -139,4 +181,27 @@ body {
 
 .movie-section {
     animation-delay: 0.8s;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2.5rem;
+    }
+    .main-header p {
+        font-size: 1.1rem;
+    }
+    .container {
+        padding: 15px;
+    }
+    .movies-grid {
+        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    }
+    .movie-item {
+        flex-direction: row; /* Volver a fila en móvil para mejor legibilidad */
+        text-align: left;
+    }
+    .movie-details h3 {
+        margin-top: 0;
+    }
 }
