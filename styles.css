@@ -49,15 +49,9 @@ body {
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 8px 20px var(--shadow-color);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 25px var(--shadow-color);
 }
 
 .hobbies-section ul {
@@ -77,10 +71,25 @@ body {
     background-color: var(--accent-color);
 }
 
-.movie-section .movie-content {
+/* Estilos para la galería de películas */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.movie-item {
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 15px;
     display: flex;
+    gap: 15px;
     align-items: center;
-    gap: 20px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.movie-item:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
 }
 
 .movie-poster {
@@ -94,7 +103,11 @@ body {
 .movie-details h3 {
     margin-top: 0;
     color: var(--accent-color);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.movie-details p {
+    font-size: 0.95rem;
 }
 
 /* Animaciones */
@@ -120,7 +133,6 @@ body {
     }
 }
 
-/* Aplicar delay a las tarjetas */
 .hobbies-section {
     animation-delay: 0.5s;
 }
