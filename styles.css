@@ -1,43 +1,43 @@
 :root {
-    --primary-text-color: #333333; /* Texto más oscuro para contraste */
-    --secondary-text-color: #666666; /* Texto secundario */
-    --background-color: #f5f5f7; /* Blanco grisáceo de Apple */
-    --card-background: #ffffff; /* Fondo blanco para las tarjetas */
-    --border-color: #e8e8ed; /* Borde sutil */
-    --accent-color: #007AFF; /* Azul vibrante de Apple */
-    --shadow-color: rgba(0, 0, 0, 0.08); /* Sombra suave */
-    --hover-shadow-color: rgba(0, 0, 0, 0.15); /* Sombra al pasar el ratón */
+    --primary-text-color: #333333;
+    --secondary-text-color: #666666;
+    --background-color: #f5f5f7;
+    --card-background: #ffffff;
+    --border-color: #e8e8ed;
+    --accent-color: #007AFF;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --hover-shadow-color: rgba(0, 0, 0, 0.15);
 }
 
 body {
     background-color: var(--background-color);
     color: var(--primary-text-color);
-    font-family: 'Inter', sans-serif; /* Fuente Inter */
+    font-family: 'Inter', sans-serif;
     margin: 0;
-    padding: 30px; /* Mayor padding general */
+    padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     line-height: 1.5;
-    -webkit-font-smoothing: antialiased; /* Suavizado de fuente */
-    -moz-osx-font-smoothing: grayscale; /* Suavizado de fuente */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .main-header {
     text-align: center;
-    margin-bottom: 50px; /* Mayor margen inferior */
+    margin-bottom: 50px;
     animation: fadeInDown 1s ease-out;
 }
 
 .main-header h1 {
     margin: 0;
-    font-size: 3rem; /* Tamaño de fuente más grande */
+    font-size: 3rem;
     font-weight: 700;
-    letter-spacing: -0.02em; /* Espaciado de letras sutil */
+    letter-spacing: -0.02em;
 }
 
 .main-header p {
-    font-size: 1.3rem; /* Tamaño de fuente para el subtítulo */
+    font-size: 1.3rem;
     color: var(--secondary-text-color);
     font-weight: 400;
     margin-top: 10px;
@@ -45,18 +45,18 @@ body {
 
 .container {
     width: 100%;
-    max-width: 1000px; /* Ancho máximo adaptado para 3 columnas */
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
-    gap: 40px; /* Mayor espacio entre secciones */
+    gap: 40px;
 }
 
 .card {
     background-color: var(--card-background);
-    border-radius: 15px; /* Bordes más redondeados */
-    padding: 30px; /* Mayor padding interno */
+    border-radius: 15px;
+    padding: 30px;
     box-shadow: 0 4px 15px var(--shadow-color);
-    border: 1px solid var(--border-color); /* Borde sutil */
+    border: 1px solid var(--border-color);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(20px);
@@ -65,11 +65,11 @@ body {
 
 .card:hover {
     box-shadow: 0 8px 25px var(--hover-shadow-color);
-    border-color: rgba(0, 122, 255, 0.3); /* Borde azul al pasar el ratón */
+    border-color: rgba(0, 122, 255, 0.3);
 }
 
 h2 {
-    font-size: 2rem; /* Tamaño para los títulos de sección */
+    font-size: 2rem;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 25px;
@@ -79,51 +79,71 @@ h2 {
 .hobbies-section ul {
     list-style-type: none;
     padding: 0;
-    display: grid; /* Usamos grid para organizar hobbies */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ajustado para tarjetas verticales */
+    gap: 20px; /* Mayor espacio entre tarjetas de hobby */
 }
 
 .hobbies-section li {
-    background-color: var(--background-color); /* Fondo similar al del body */
-    margin-bottom: 0; /* Ya no es necesario */
-    padding: 15px 20px;
+    background-color: var(--background-color);
+    margin-bottom: 0;
+    padding: 15px; /* Padding ajustado */
     border-radius: 10px;
     font-weight: 500;
     transition: background-color 0.3s ease, transform 0.2s ease;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    flex-direction: column; /* Cambiado a columna para imagen arriba, texto abajo */
+    align-items: center; /* Centrar contenido */
+    text-align: center; /* Centrar texto */
+    gap: 10px; /* Espacio entre imagen y texto */
     border: 1px solid var(--border-color);
+    height: auto; /* Asegurar que la altura se ajuste al contenido */
 }
 
 .hobbies-section li:hover {
-    background-color: var(--border-color); /* Ligero cambio de fondo al pasar el ratón */
+    background-color: var(--border-color);
     transform: translateY(-3px);
 }
+
+.hobby-image { /* Renombrado de hobby-icon a hobby-image para mayor claridad */
+    width: 100%; /* La imagen ocupa todo el ancho disponible */
+    max-width: 150px; /* Ancho máximo para la imagen */
+    height: auto; /* Altura automática para mantener la proporción */
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 5px; /* Pequeño margen entre la imagen y el texto */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hobby-text {
+    font-size: 1.1rem; /* Tamaño de fuente para el texto del hobby */
+    color: var(--primary-text-color);
+    font-weight: 600;
+}
+
 
 /* Estilos para la galería de películas (grid 3x3) */
 .movies-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 columnas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
 }
 
 .movie-item {
-    background-color: var(--background-color); /* Fondo claro para los items */
+    background-color: var(--background-color);
     border-radius: 12px;
     padding: 20px;
     display: flex;
-    flex-direction: column; /* Cambiado a columna para mejor presentación en 3x3 */
-    align-items: center; /* Centrar contenido */
-    text-align: center; /* Centrar texto */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     gap: 15px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
     border: 1px solid var(--border-color);
 }
 
 .movie-item:hover {
-    transform: translateY(-5px); /* Pequeño levantamiento al pasar el ratón */
+    transform: translateY(-5px);
     box-shadow: 0 6px 20px var(--hover-shadow-color);
     border-color: rgba(0, 122, 255, 0.3);
 }
@@ -133,18 +153,18 @@ h2 {
     width: 166px;
     height: 236px;
     object-fit: cover;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para el póster */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .movie-details {
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Permite que el contenedor crezca y ocupe el espacio */
+    flex-grow: 1;
     width: 100%;
 }
 
 .movie-details h3 {
-    margin-top: 10px; /* Ajuste de margen */
+    margin-top: 10px;
     margin-bottom: 5px;
     color: var(--primary-text-color);
     font-size: 1.4rem;
@@ -160,12 +180,12 @@ h2 {
 }
 
 .movie-rating {
-    margin-top: auto; /* Empuja la calificación hacia abajo */
-    padding-top: 10px; /* Espacio sobre la calificación */
+    margin-top: auto;
+    padding-top: 10px;
     font-size: 1rem;
     font-weight: 600;
     color: var(--primary-text-color);
-    text-align: left; /* Alineado a la izquierda */
+    text-align: left;
 }
 
 /* Animaciones */
@@ -210,11 +230,14 @@ h2 {
     .container {
         padding: 15px;
     }
+    .hobbies-section ul {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Ajuste para móviles */
+    }
     .movies-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+        grid-template-columns: 1fr;
     }
     .movie-item {
-        flex-direction: row; /* Volver a fila en móvil para mejor legibilidad */
+        flex-direction: row;
         text-align: left;
     }
     .movie-details h3 {
