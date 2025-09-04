@@ -1,0 +1,5 @@
+Link de Netlify:
+https://taller1bpds.netlify.app/
+
+Link repositorio remote (Github):
+https://github.com/jretamoz4/taller_1
