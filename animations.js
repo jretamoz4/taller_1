@@ -1,11 +1,11 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // ===== LÓGICA DEL MODO OSCURO =====
-    const themeToggle = document.getElementById('theme-toggle'); // ID corregido
-    const currentTheme = localStorage.getItem('theme');
-
-    const setTheme = (theme) => {
-        localStorage.setItem('theme', theme);
+    const themeToggle = document.getElementById('theme-toggle');
+    
+    // Función para aplicar el tema
+    const applyTheme = (theme) => {
         if (theme === 'dark') {
             document.body.classList.add('dark-mode');
             themeToggle.checked = true;
@@ -15,22 +15,27 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    if (currentTheme) {
-        setTheme(currentTheme);
+    // 1. Intentar cargar el tema desde localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
     } else {
-        const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (userPrefersDark) {
-            setTheme('dark');
+        // 2. Si no hay tema guardado, verificar la preferencia del sistema operativo
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
         }
     }
 
+    // Evento para cambiar el tema manualmente
     themeToggle.addEventListener('change', () => {
-        if (themeToggle.checked) {
-            setTheme('dark');
-        } else {
-            setTheme('light');
-        }
+        const newTheme = themeToggle.checked ? 'dark' : 'light';
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
     });
+
 
     // ===== ANIMACIÓN 3D DE LAS TARJETAS (CÓDIGO ORIGINAL) =====
     const mainCards = document.querySelectorAll('.card');
