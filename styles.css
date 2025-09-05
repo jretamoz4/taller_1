@@ -1,12 +1,26 @@
+/* --- Variables de Tema (Light & Dark) --- */
 :root {
     --primary-text-color: #333333;
     --secondary-text-color: #666666;
     --background-color: #f5f5f7;
     --card-background: #ffffff;
+    --item-background: #f5f5f7;
     --border-color: #e8e8ed;
     --accent-color: #007AFF;
     --shadow-color: rgba(0, 0, 0, 0.08);
     --hover-shadow-color: rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.4s;
+}
+
+body.dark-mode {
+    --primary-text-color: #e2e2e2;
+    --secondary-text-color: #999999;
+    --background-color: #121212;
+    --card-background: #1e1e1e;
+    --item-background: #2a2a2a;
+    --border-color: #333333;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --hover-shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -19,33 +33,76 @@ body {
     flex-direction: column;
     align-items: center;
     line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
+/* --- Interruptor de Tema (NUEVO) --- */
+.theme-switch-wrapper {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+}
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+.theme-switch input { display:none; }
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+    background-image: url('https://img.icons8.com/ios-glyphs/30/000000/sun.png');
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+input:checked + .slider:before {
+    transform: translateX(26px);
+    background-image: url('https://img.icons8.com/ios-glyphs/30/ffffff/moon-symbol.png');
+}
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+
+/* --- Estilos Generales con Variables --- */
 .main-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     animation: fadeInDown 1s ease-out;
 }
 
-.main-header h1 {
-    margin: 0;
-    font-size: 3rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
+.main-header h1, h2 {
+    color: var(--primary-text-color);
+    transition: color var(--transition-speed);
 }
-
 .main-header p {
-    font-size: 1.3rem;
     color: var(--secondary-text-color);
-    font-weight: 400;
-    margin-top: 10px;
+    transition: color var(--transition-speed);
 }
 
 .container {
     width: 100%;
-    max-width: 1400px; /* Ajustado para acomodar la grilla 5x2 */
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -53,246 +110,30 @@ body {
 
 .card {
     background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color var(--transition-speed), background-color var(--transition-speed);
+    /* ... Pega el resto de tus estilos .card originales aquí ... */
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 4px 15px var(--shadow-color);
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s forwards;
 }
 
-.card:hover {
-    box-shadow: 0 8px 25px var(--hover-shadow-color);
-    border-color: rgba(0, 122, 255, 0.3);
-}
-
-h2 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 25px;
-    color: var(--primary-text-color);
-}
-
-.hobbies-section ul {
-    list-style-type: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Grilla 5x1 */
-    gap: 20px;
-}
-
 .hobbies-section li {
-    background-color: var(--background-color);
-    padding: 15px;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 10px;
+    background-color: var(--item-background);
     border: 1px solid var(--border-color);
-    transition: all 0.4s ease-in-out;
-    overflow: hidden;
-    max-height: 230px;
+    /* ... Pega el resto de tus estilos de li ... */
 }
-
 .hobbies-section li:hover {
     background-color: var(--border-color);
-    transform: translateY(-3px);
-    max-height: 300px;
-}
-
-.hobby-image {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.hobby-text {
-    font-size: 1.1rem;
-    color: var(--primary-text-color);
-    font-weight: 600;
-    margin-top: 5px;
-}
-
-.hobby-description {
-    font-size: 0.85rem;
-    color: var(--secondary-text-color);
-    opacity: 0;
-    max-height: 0;
-    transition: opacity 0.4s ease-out 0.1s, max-height 0.4s ease-out;
-    margin: 5px 0 0 0;
-}
-
-.hobbies-section li:hover .hobby-description {
-    opacity: 1;
-    max-height: 100px;
-}
-
-.movies-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Grilla 5x2 (5 columnas) */
-    gap: 25px;
 }
 
 .movie-item {
-    background-color: #FEFEFE;
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    background-color: var(--card-background);
     border: 1px solid var(--border-color);
-    transition: all 0.4s ease-in-out;
-    overflow: hidden;
-    max-height: 480px;
+    /* ... Pega el resto de tus estilos de .movie-item ... */
 }
 
-.movie-item:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 30px var(--hover-shadow-color);
-    border-color: rgba(0, 122, 255, 0.4);
-    max-height: 600px;
-}
-
-.movie-poster {
-    border-radius: 8px;
-    width: 166px;
-    height: 236px;
-    object-fit: cover;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    align-self: center;
-}
-
-.movie-details {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    width: 100%;
-    text-align: center;
-}
-
-.movie-details h3 {
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: var(--primary-text-color);
-    font-size: 1.4rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-}
-
-.movie-details p {
-    font-size: 0.9rem;
-    color: var(--secondary-text-color);
-    line-height: 1.4;
-    font-weight: 400;
-    margin-bottom: 10px;
-}
-
-.movie-rating {
-    margin-top: auto;
-    padding-top: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--primary-text-color);
-    text-align: left;
-}
-
-.movie-extra-details {
-    opacity: 0;
-    max-height: 0;
-    transition: opacity 0.4s ease-out 0.1s, max-height 0.4s ease-out;
-    text-align: left;
-    border-top: 1px solid var(--border-color);
-    padding-top: 15px;
-    margin-top: 15px;
-}
-
-.movie-item:hover .movie-extra-details {
-    opacity: 1;
-    max-height: 100px;
-}
-
-.movie-extra-details p {
-    font-size: 0.85rem;
-    margin: 5px 0;
-}
-
-.movie-extra-details strong {
-    color: var(--primary-text-color);
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.hobbies-section {
-    animation-delay: 0.5s;
-}
-
-.movie-section {
-    animation-delay: 0.8s;
-}
-
-/* Media Queries */
-@media (max-width: 1400px) { /* Ajuste para que se vea bien en tablets grandes si no cabe la grilla 5x2 */
-    .movies-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-}
-
-@media (max-width: 1000px) { /* Ajuste para tablets */
-    .hobbies-section ul {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-}
-
-@media (max-width: 768px) { /* Ajuste para móviles */
-    .main-header h1 {
-        font-size: 2.5rem;
-    }
-    .main-header p {
-        font-size: 1.1rem;
-    }
-    .container {
-        padding: 15px;
-    }
-    .hobbies-section li {
-        max-height: none; /* Desactivar expansión en móvil */
-    }
-    .hobbies-section li .hobby-description,
-    .movie-item .movie-extra-details {
-        opacity: 1; /* Mostrar siempre detalles en móvil */
-        max-height: 100px;
-    }
-    .movies-grid {
-        grid-template-columns: 1fr; /* Una columna en móvil */
-    }
-    .movie-item {
-        max-height: none;
-    }
-}
+/* ... Pega el resto de tu CSS original aquí. Los estilos que usan colores estáticos deben ser cambiados a variables. ... */
